@@ -1,0 +1,19 @@
+@import "../../styles/variables";
+
+.header {
+  @include makeFlex(row, space-between, center);
+  width: 100%;
+  height: 5rem;
+  padding: 2rem;
+  background-color: $header;
+  color: $on-header;
+
+  .logo {
+    border: white 2px solid;
+  }
+
+  ul {
+    @include makeFlex(row, space-between, baseline);
+    gap: 20px;
+  }
+}
