@@ -1,1 +1,42 @@
 @import "../../styles/variables";
+
+.authForm {
+  width: 40%;
+  margin: 10rem auto;
+  text-align: center;
+
+  .btn {
+    background-color: transparent;
+    border-style: none;
+    color: inherit;
+    opacity: 70%;
+    cursor: pointer;
+    font-size: 0.95rem;
+    &:hover {
+      opacity: 100%;
+    }
+  }
+
+  .form {
+    @include makeFlex(column, center, center);
+    gap: 10px;
+    font-weight: 600;
+
+    input {
+      width: 100%;
+      border-style: none;
+      border-radius: 5px;
+      line-height: 1.5rem;
+    }
+
+    .btnSubmit {
+      margin: 15px;
+    }
+
+    .errorMessage {
+      font-weight: 400;
+      margin: 0;
+      color: rgb(255, 58, 36);
+    }
+  }
+}

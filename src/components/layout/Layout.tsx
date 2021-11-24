@@ -7,7 +7,7 @@ const Layout: React.FC<{}> = (props) => {
   return (
     <Fragment>
       <MainNav />
-      <main>{props.children}</main>
+      <main className={styles.main}>{props.children}</main>
     </Fragment>
   );
 };

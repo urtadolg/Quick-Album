@@ -1,23 +1,54 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
+import { useAppSelector, useAppDispatch } from "../../store/hook";
+import { authActions } from "../../store/auth-slice";
 import styles from "./MainNav.module.scss";
 
 const MainNav: React.FC<{}> = (props) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+
+  const onLogoClickHandler = () => {
+    navigate("/");
+  };
+
+  const navLinkActiveStyle = (navLink: { isActive: boolean }) =>
+    navLink.isActive ? styles.active : "";
+
+  const onLogoutHandler = () => {
+    dispatch(authActions.logout());
+  };
+
   return (
     <header className={styles.header}>
-      <span className={styles.logo}>Logo</span>
+      <span className={styles.logo} onClick={onLogoClickHandler}>
+        Quick Album
+      </span>
       <nav>
         <ul>
-          <li>
-            <NavLink
-              className={(navLink) => (navLink.isActive ? styles.active : "")}
-              to="/home"
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>Link 2</li>
-          <li>Link 3</li>
+          {!isLoggedIn && (
+            <li>
+              <NavLink className={navLinkActiveStyle} to="/auth">
+                Login
+              </NavLink>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
+              <NavLink className={navLinkActiveStyle} to="/profile">
+                {" "}
+                Profile{" "}
+              </NavLink>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
+              <button onClick={onLogoutHandler} className={styles.btn}>
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
