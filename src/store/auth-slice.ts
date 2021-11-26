@@ -4,13 +4,11 @@ const initialState: {
   isCreatingAccount: boolean;
   isLoggedIn: boolean;
   isLoadingRequest: boolean;
-  errorMessage: string | null; //verificar se useState() é melhor
   userToken: string | null;
 } = {
   isCreatingAccount: false,
   isLoggedIn: !!localStorage.getItem("token"),
   isLoadingRequest: false,
-  errorMessage: null,
   userToken: localStorage.getItem("token"),
 };
 
@@ -39,9 +37,6 @@ const authSlice = createSlice({
     },
     stopLoadingRequest(state) {
       state.isLoadingRequest = false;
-    },
-    setErrorMessage(state, action: PayloadAction<string | null>) {
-      state.errorMessage = action.payload;
     },
   },
 });

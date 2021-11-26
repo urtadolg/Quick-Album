@@ -1,0 +1,24 @@
+@import "../../styles/variables";
+
+.searchBox {
+  @include makeFlex(row, flex-start, center);
+  flex-grow: 1;
+  max-width: 600px;
+  height: 40%;
+
+  input {
+    flex-grow: 1;
+    height: 100%;
+    outline-color: $button;
+    border: $button solid 2px;
+    border-right: transparent;
+    border-radius: 8px 0 0 8px;
+  }
+
+  button {
+    height: 100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: $button;
+  }
+}

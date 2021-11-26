@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router";
 
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { authActions } from "../../store/auth-slice";
@@ -7,9 +6,13 @@ import styles from "./AuthForm.module.scss";
 import Card from "../ui/Card";
 import Button from "../ui/Button";
 import LoadingSpinner from "../ui/LoadingSpinner";
+import useAuth from "../../hooks/use-auth";
 
 const AuthForm: React.FC = (props) => {
-  const navigate = useNavigate();
+  //Inicialização de variáveis e states:
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+  const { sendRequest, errorMessage, clearErrorMessage } = useAuth();
   const dispatch = useAppDispatch();
   const isCreatingAccount = useAppSelector(
     (state) => state.auth.isCreatingAccount
@@ -17,102 +20,70 @@ const AuthForm: React.FC = (props) => {
   const isLoadingRequest = useAppSelector(
     (state) => state.auth.isLoadingRequest
   );
-  const errorMessage = useAppSelector((state) => state.auth.errorMessage);
-  const emailInputRef = useRef<HTMLInputElement>(null);
-  const passwordInputRef = useRef<HTMLInputElement>(null);
 
-  const createNewAccountHandler = () => {
+  //Form Functions Handler:
+  const onSubmitHandler = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const enteredEmail = emailInputRef.current!.value;
+    const enteredPassword = passwordInputRef.current!.value;
+    await sendRequest(enteredEmail, enteredPassword);
+  };
+
+  const onFocusHandler = () => {
+    clearErrorMessage();
+  };
+
+  const onClickCreateNewAccount = () => {
+    clearErrorMessage();
     dispatch(authActions.enterCreateAccount());
   };
-  const loginExistingAccountHandler = () => {
+
+  const onClickExistingAccount = () => {
+    clearErrorMessage();
     dispatch(authActions.leaveCreateAccount());
   };
 
-  //Submit Handler:
+  //Conditional Render Helpers:
+  //Create New Account or Login Existing Account?
+  const [btnOnClickFunction, btnText, formTitle] = isCreatingAccount
+    ? [onClickExistingAccount, "Login with existing account", "Sign Up"]
+    : [onClickCreateNewAccount, "Create new account", "Login"];
 
-  const onSubmitHandler = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const enteredEmail = emailInputRef.current!.value;
-    const enteredPassword = passwordInputRef.current!.value;
-    let url = "";
-
-    //Checando se Login ou Signup
-    if (isCreatingAccount) {
-      //creating fetch url
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyACH4THeD-9Tjbm8416dp0efZwVxasPZME";
-    } else {
-      //logging in fetch url
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyACH4THeD-9Tjbm8416dp0efZwVxasPZME";
-    }
-
-    const sendRequest = async () => {
-      dispatch(authActions.startLoadingRequest());
-      const response = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        dispatch(authActions.setErrorMessage(data.error.message));
-        throw new Error("Something went wrong");
-      }
-
-      dispatch(authActions.stopLoadingRequest());
-      return data;
-    };
-
-    try {
-      const serverResponse = await sendRequest();
-      const userToken = serverResponse.idToken;
-      dispatch(authActions.login(userToken));
-      dispatch(authActions.setErrorMessage(null));
-      navigate("/profile", { replace: true });
-    } catch (error) {
-      dispatch(authActions.stopLoadingRequest());
-      console.log(error);
-    }
-  };
+  //Submit Button or Loading Spinner?
+  const buttonOrSpinner = isLoadingRequest ? (
+    <LoadingSpinner />
+  ) : (
+    <Button className={styles.btnSubmit} type="submit">
+      {formTitle}
+    </Button>
+  );
 
   return (
     <Card className={styles.authForm}>
-      <h2>{isCreatingAccount ? "Sign Up" : "Login"}</h2>
+      <h1>{formTitle}</h1>
       <form onSubmit={onSubmitHandler} className={styles.form}>
         <label htmlFor="email">Your email</label>
-        <input type="email" id="email" ref={emailInputRef} />
+        <input
+          type="email"
+          id="email"
+          ref={emailInputRef}
+          onFocus={onFocusHandler}
+        />
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" ref={passwordInputRef} />
-        {errorMessage && !isLoadingRequest && (
-          <p className={styles.errorMessage}>{errorMessage}</p>
+        <input
+          type="password"
+          id="password"
+          ref={passwordInputRef}
+          onFocus={onFocusHandler}
+        />
+        {errorMessage && (
+          <span className={styles.errorMessage}>{errorMessage}</span>
         )}
-        {!isLoadingRequest ? (
-          <Button className={styles.btnSubmit} type="submit">
-            {isCreatingAccount ? "Sign Up" : "Login"}
-          </Button>
-        ) : (
-          <LoadingSpinner />
-        )}
+        {buttonOrSpinner}
       </form>
-      {!isCreatingAccount ? (
-        <button className={styles.btn} onClick={createNewAccountHandler}>
-          Create new account
-        </button>
-      ) : (
-        <button className={styles.btn} onClick={loginExistingAccountHandler}>
-          Login with existing account
-        </button>
-      )}
+      <button className={styles.btnToggleForm} onClick={btnOnClickFunction}>
+        {btnText}
+      </button>
     </Card>
   );
 };

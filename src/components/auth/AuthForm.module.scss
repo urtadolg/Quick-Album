@@ -1,21 +1,9 @@
 @import "../../styles/variables";
 
 .authForm {
-  width: 40%;
+  width: 300px;
   margin: 10rem auto;
   text-align: center;
-
-  .btn {
-    background-color: transparent;
-    border-style: none;
-    color: inherit;
-    opacity: 70%;
-    cursor: pointer;
-    font-size: 0.95rem;
-    &:hover {
-      opacity: 100%;
-    }
-  }
 
   .form {
     @include makeFlex(column, center, center);
@@ -26,17 +14,29 @@
       width: 100%;
       border-style: none;
       border-radius: 5px;
-      line-height: 1.5rem;
-    }
-
-    .btnSubmit {
-      margin: 15px;
+      line-height: 2rem;
     }
 
     .errorMessage {
       font-weight: 400;
       margin: 0;
       color: rgb(255, 58, 36);
+    }
+
+    .btnSubmit {
+      margin: 15px;
+    }
+  }
+
+  .btnToggleForm {
+    background-color: transparent;
+    border-style: none;
+    color: inherit;
+    opacity: 70%;
+    cursor: pointer;
+    font-size: 0.95rem;
+    &:hover {
+      opacity: 100%;
     }
   }
 }

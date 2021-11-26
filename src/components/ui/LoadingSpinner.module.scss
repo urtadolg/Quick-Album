@@ -3,9 +3,9 @@
 .spinner {
   width: 35px;
   height: 35px;
-  border: black solid 5px;
+  border: $button solid 5px;
   border-radius: 50%;
-  border-color: $on-header transparent $on-header transparent;
+  border-color: $button transparent $button transparent;
   animation: spin infinite linear 1s;
 }
 

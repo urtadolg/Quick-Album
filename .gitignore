@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+/src/credentials
 .pnp.js
 
 # testing
