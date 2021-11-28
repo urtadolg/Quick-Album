@@ -1,9 +1,9 @@
 //colors
 
-$header: white;
-$on-header: #333333;
+$header: #ffffff;
+$on-header: #007bff;
 
-$button: #3aa95c;
+$button: #007bff;
 $on-button: white;
 
 //helper functions
@@ -12,4 +12,4 @@ $on-button: white;
   flex-direction: $flexDirection;
   justify-content: $justifyContent;
   align-items: $alignItems;
-} ;
+}

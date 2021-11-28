@@ -12,6 +12,7 @@ const MainNav: React.FC<{}> = (props) => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
   //Funções:
+
   const onLogoClickHandler = () => {
     navigate("/");
   };

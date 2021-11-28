@@ -4,6 +4,8 @@
   width: 300px;
   margin: 10rem auto;
   text-align: center;
+  background-color: $on-header;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.16);
 
   .form {
     @include makeFlex(column, center, center);
@@ -13,6 +15,7 @@
     input {
       width: 100%;
       border-style: none;
+      border: $header solid 2px;
       border-radius: 5px;
       line-height: 2rem;
     }
