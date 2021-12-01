@@ -1,81 +1,28 @@
 import React from "react";
+import { createPortal } from "react-dom";
 
 import styles from "./MainContent.module.scss";
+import { useAppSelector } from "../../store/hook";
+import ImageDetails from "../modal/ImageDetails";
+import PhotosList from "../photos/PhotosList";
 
 const MainContent: React.FC = (props) => {
+  //Inicialização de variáveis e states:
+  const imageModalIsOpened = useAppSelector(
+    (state) => state.img.imageModalOpened
+  );
+
   return (
     <React.Fragment>
+      {imageModalIsOpened &&
+        createPortal(
+          <ImageDetails />,
+          document.getElementById("modalPortal") as HTMLElement
+        )}
       <div className={styles.header}>
         <h1 className={styles.title}>Seleção do Dia</h1>
       </div>
-      <section className={styles.imagesContainer}>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-        <div>
-          <img
-            alt="img test"
-            src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&h=350"
-          />
-        </div>
-      </section>
+      <PhotosList />
     </React.Fragment>
   );
 };

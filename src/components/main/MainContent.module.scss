@@ -11,18 +11,3 @@
     color: white;
   }
 }
-
-.imagesContainer {
-  @include makeFlex(row, flex-start, flex-start);
-  border: black 1px solid;
-  margin: 0 auto;
-  max-width: 1505px;
-  height: 100%;
-  flex-wrap: wrap;
-  gap: 35px calc((100% - 350px * 4) / 3);
-  div {
-    width: 350px;
-    height: 350px;
-    background-color: cadetblue;
-  }
-}

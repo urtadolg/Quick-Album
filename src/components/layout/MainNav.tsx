@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from "../../store/hook";
 import { authActions } from "../../store/auth-slice";
 import styles from "./MainNav.module.scss";
 import SearchBox from "../ui/SearchBox";
+import { paginationActions } from "../../store/pagination-slice";
 
 const MainNav: React.FC<{}> = (props) => {
   //Inicialização de variáveis e states:
@@ -11,9 +12,15 @@ const MainNav: React.FC<{}> = (props) => {
   const navigate = useNavigate();
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
+  const paginationStates = useAppSelector(
+    (state) => state.pagination.currentPage
+  );
+
   //Funções:
 
   const onLogoClickHandler = () => {
+    dispatch(paginationActions.selectPage(1));
+    console.log(paginationStates);
     navigate("/");
   };
 
