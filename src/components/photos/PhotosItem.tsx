@@ -3,22 +3,32 @@ import React from "react";
 import styles from "./PhotosItem.module.scss";
 import { useAppSelector, useAppDispatch } from "../../store/hook";
 import { imgActions } from "../../store/img-slice";
+import LoadingImage from "../ui/LoadingImage";
+import { Photo } from "pexels";
 
 const PhotosItem: React.FC<{
-  onClick: (url: string) => void;
-  urlTiny: string;
-  photoId: number;
-  photographer: string;
+  imgDetails: Photo;
 }> = (props) => {
   //Inicialização de variáveis e states:
+  const dispatch = useAppDispatch();
+  const isImageLoading = useAppSelector((state) => state.img.isLoadingRequest);
 
+  //Funções:
   const onClickHandler = () => {
-    props.onClick(props.urlTiny);
+    dispatch(imgActions.openImageModal(props.imgDetails));
   };
 
   return (
-    <div onClick={onClickHandler}>
-      <img alt={`Foto tirada por: ` + props.photographer} src={props.urlTiny} />
+    <div>
+      {!isImageLoading ? (
+        <img
+          onClick={onClickHandler}
+          alt={`Foto tirada por: ` + props.imgDetails.photographer}
+          src={props.imgDetails.src.tiny}
+        />
+      ) : (
+        <LoadingImage />
+      )}
     </div>
   );
 };

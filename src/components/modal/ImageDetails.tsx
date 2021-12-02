@@ -7,7 +7,7 @@ import { imgActions } from "../../store/img-slice";
 const ImageDetails: React.FC = (props) => {
   //Inicialização de variáveis e states:
   const dispatch = useAppDispatch();
-  const imgUrl = useAppSelector((state) => state.img.imageDetails.url);
+  const imgDetails = useAppSelector((state) => state.img.imageDetails);
 
   const onCloseHandler = () => {
     dispatch(imgActions.closeImageModal());
@@ -17,10 +17,8 @@ const ImageDetails: React.FC = (props) => {
     <React.Fragment>
       <div className={styles.backdrop} onClick={onCloseHandler} />
       <section className={styles.modalContainer}>
-        <img src={imgUrl} alt="Teste" />
-        <details className={styles.detailsContainer}>
-          <p>Image Details Here.</p>
-        </details>
+        <img src={imgDetails.src.large} alt="Teste" />
+        <p>{`Tirada por: ${imgDetails.photographer}.  Dimensões: ${imgDetails.width} x ${imgDetails.height}p`}</p>
       </section>
     </React.Fragment>
   );

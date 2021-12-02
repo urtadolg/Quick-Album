@@ -8,7 +8,7 @@ import {
 } from "pexels";
 
 import { PEXELS_API_KEY } from "../credentials/apiKeys";
-import { useAppSelector, useAppDispatch } from "../store/hook";
+import { useAppDispatch } from "../store/hook";
 import { imgActions } from "../store/img-slice";
 import { paginationActions } from "../store/pagination-slice";
 
@@ -34,7 +34,9 @@ const usePexels = () => {
 
   const sendCuratedRequest = async (page?: number, per_page: number = 10) => {
     try {
+      dispatch(imgActions.startLoadingRequest());
       const response = await client.photos.curated({ page, per_page });
+      dispatch(imgActions.stopLoadingRequest());
       console.log(response);
       if (isPhotos(response)) {
         dispatch(imgActions.saveCuratedPhotos(response.photos));
@@ -47,6 +49,7 @@ const usePexels = () => {
           );
         }
       } else {
+        dispatch(imgActions.stopLoadingRequest());
         throw new Error(response.error);
       }
     } catch (error) {

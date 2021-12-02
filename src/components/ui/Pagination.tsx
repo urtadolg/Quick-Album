@@ -70,12 +70,15 @@ const Pagination: React.FC<{}> = (props) => {
         dispatch(
           paginationActions.selectPage(parseInt(event.target.innerText))
         );
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
       if (event.target.innerText === "Próxima >") {
         dispatch(paginationActions.selectPage(currentPage + 1));
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else if (event.target.innerText === "< Anterior") {
         dispatch(paginationActions.selectPage(currentPage - 1));
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
   };
@@ -98,8 +101,8 @@ const Pagination: React.FC<{}> = (props) => {
     );
   });
 
-  return (
-    <div className={styles.paginationContainer}>
+  const PaginationContainer = () => {
+    return (
       <ul>
         {currentPage > 1 && (
           <li>
@@ -113,7 +116,14 @@ const Pagination: React.FC<{}> = (props) => {
           </li>
         )}
       </ul>
+    );
+  };
+
+  return (
+    <div className={styles.paginationContainer}>
+      <PaginationContainer />
       {props.children}
+      <PaginationContainer />
     </div>
   );
 };

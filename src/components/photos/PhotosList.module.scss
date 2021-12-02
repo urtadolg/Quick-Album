@@ -5,20 +5,16 @@
 
   flex-wrap: wrap;
   gap: 35px calc((100% - 280px * 4) / 3);
-  div {
-    width: 280px;
-    height: 200px;
+
+  img {
+    box-sizing: border-box;
+    border-radius: 6px;
+    overflow: hidden;
     background-color: cadetblue;
-    cursor: pointer;
-    /*     img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    } */
+
     &:hover {
-      box-shadow: 0 0 10px 10px rgba(0, 110, 255, 0.1);
-      border: #007bff solid 2px;
-      overflow: hidden;
+      outline: $on-header 3px solid;
+      cursor: pointer;
     }
   }
 }
