@@ -5,6 +5,7 @@ import styles from "./MainContent.module.scss";
 import { useAppSelector } from "../../store/hook";
 import ImageDetails from "../modal/ImageDetails";
 import PhotosList from "../photos/PhotosList";
+import Pagination from "../ui/Pagination";
 
 const MainContent: React.FC = (props) => {
   //Inicialização de variáveis e states:
@@ -22,7 +23,9 @@ const MainContent: React.FC = (props) => {
       <div className={styles.header}>
         <h1 className={styles.title}>Seleção do Dia</h1>
       </div>
-      <PhotosList />
+      <Pagination>
+        <PhotosList />
+      </Pagination>
     </React.Fragment>
   );
 };
