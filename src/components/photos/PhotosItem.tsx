@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./PhotosItem.module.scss";
+/* import styles from "./PhotosItem.module.scss"; */
 import { useAppSelector, useAppDispatch } from "../../store/hook";
 import { imgActions } from "../../store/img-slice";
 import LoadingImage from "../ui/LoadingImage";

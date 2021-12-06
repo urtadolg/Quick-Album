@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   createClient,
   ErrorResponse,
@@ -16,7 +15,6 @@ const usePexels = () => {
   //Inicialização de variáveis e states:
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   //configurando Pexels API:
   const client = createClient(PEXELS_API_KEY);

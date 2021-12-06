@@ -1,12 +1,12 @@
 import { Fragment } from "react";
 
 import styles from "./Layout.module.scss";
-import MainNav from "./MainNav";
+import Header from "./header/Header";
 
 const Layout: React.FC<{}> = (props) => {
   return (
     <Fragment>
-      <MainNav />
+      <Header />
       <main className={styles.main}>{props.children}</main>
     </Fragment>
   );

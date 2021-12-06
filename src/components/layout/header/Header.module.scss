@@ -1,0 +1,34 @@
+@import "../../../styles/variables";
+
+.headerContainer {
+  @include makeFlex(row, center, center);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+  padding: 1rem;
+  background-color: $header;
+  color: $on-header;
+  font-size: 2.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.16);
+
+  @media (max-width: 768px) {
+    .header {
+      gap: 2.5rem;
+
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .pageName {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .searchBox {
+      width: 100%;
+    }
+  }
+}

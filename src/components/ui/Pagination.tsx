@@ -66,7 +66,7 @@ const Pagination: React.FC<{}> = (props) => {
   const onClickHandler = (event: React.MouseEvent) => {
     if (isButton(event.target)) {
       console.log(event);
-      if (event.target.innerText != "< Anterior" && "Próxima >") {
+      if (event.target.innerText !== "< Anterior" && "Próxima >") {
         dispatch(
           paginationActions.selectPage(parseInt(event.target.innerText))
         );

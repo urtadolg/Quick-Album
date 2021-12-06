@@ -1,7 +1,15 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faBars,
+  faHome,
+  faUser,
+  faThLarge,
+  faSignOutAlt,
+  faExpand,
+} from "@fortawesome/free-solid-svg-icons";
 
 import usePexels from "./hooks/use-pexels";
 import { useAppSelector } from "./store/hook";
@@ -12,7 +20,15 @@ import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 
 //configurando FontAwesome:
-library.add(faSearch);
+library.add(
+  faSearch,
+  faBars,
+  faHome,
+  faUser,
+  faThLarge,
+  faSignOutAlt,
+  faExpand
+);
 
 function App() {
   //Inicialização de variáveis e states:
@@ -21,8 +37,8 @@ function App() {
 
   useEffect(() => {
     sendCuratedRequest(selectedPage, 40);
-    console.log("feching...");
-  }, [selectedPage]);
+    console.log(errorMessage);
+  }, [selectedPage, errorMessage, sendCuratedRequest]);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
   return (

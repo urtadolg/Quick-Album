@@ -1,24 +1,14 @@
-@import "../../styles/variables";
+@import "../../../../styles/variables";
 
-.header {
+.container {
   @include makeFlex(row, space-between, center);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6rem;
-  padding: 0 12rem;
-  background-color: $header;
-  color: $on-header;
-  font-weight: bold;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.16);
-
-  @media (max-width: 992px) {
-    padding: 0 5rem;
-  }
+  box-sizing: content-box;
+  width: 1440px;
+  height: 100%;
+  padding: 0 2rem;
 
   .logo {
-    font-size: 1.5rem;
+    font-weight: bold;
     cursor: pointer;
   }
 
@@ -27,10 +17,11 @@
     gap: 20px;
 
     li {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      font-weight: 600;
 
       a {
-        padding-bottom: 0.3rem;
+        padding-bottom: 0.2rem;
         &:hover {
           border-bottom: $button 2px solid;
         }
@@ -43,12 +34,17 @@
         padding: 0.5rem 1.5rem;
         color: $button;
         cursor: pointer;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+
+        &:hover {
+          background-color: rgb(226, 233, 255);
+        }
       }
     }
   }
 }
 
-.active {
+.navLinkActive {
   border-bottom: $button 2px solid;
+  font-weight: bold;
 }

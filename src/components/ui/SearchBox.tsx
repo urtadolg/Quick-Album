@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./SearchBox.module.scss";
 import Button from "./Button";
 
-const Auth: React.FC = (props) => {
+const Auth: React.FC<{
+  className: string;
+}> = (props) => {
   const navigate = useNavigate();
 
   const onSubmitHandler = (event: React.FormEvent) => {
@@ -15,9 +17,12 @@ const Auth: React.FC = (props) => {
   };
 
   return (
-    <form className={styles.searchBox} onSubmit={onSubmitHandler}>
-      <input type="text" name="search" />
-      <Button type="submit">
+    <form
+      className={`${styles.searchBox} ${props.className}`}
+      onSubmit={onSubmitHandler}
+    >
+      <input type="text" name="search" className={styles.searchInput} />
+      <Button type="submit" className={styles.btnSearch}>
         <FontAwesomeIcon icon="search" />
       </Button>
     </form>
