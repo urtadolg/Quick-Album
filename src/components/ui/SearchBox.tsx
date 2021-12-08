@@ -6,7 +6,7 @@ import styles from "./SearchBox.module.scss";
 import Button from "./Button";
 
 const Auth: React.FC<{
-  className: string;
+  className?: string;
 }> = (props) => {
   const navigate = useNavigate();
 
@@ -16,11 +16,12 @@ const Auth: React.FC<{
     navigate("/search");
   };
 
+  const searchBoxClasses = props.className
+    ? `${styles.searchBox} ${props.className}`
+    : `${styles.searchBox}`;
+
   return (
-    <form
-      className={`${styles.searchBox} ${props.className}`}
-      onSubmit={onSubmitHandler}
-    >
+    <form className={searchBoxClasses} onSubmit={onSubmitHandler}>
       <input type="text" name="search" className={styles.searchInput} />
       <Button type="submit" className={styles.btnSearch}>
         <FontAwesomeIcon icon="search" />

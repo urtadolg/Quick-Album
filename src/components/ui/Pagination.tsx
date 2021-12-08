@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { paginationActions } from "../../store/pagination-slice";
@@ -6,12 +6,22 @@ import styles from "./Pagination.module.scss";
 
 const Pagination: React.FC<{}> = (props) => {
   //Inicialização de variáveis e states:
+  const [isMobileScreen, setIsMobileScreen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   let displayArray: (string | number)[] = [];
   const currentPage = useAppSelector((state) => state.pagination.currentPage);
   const totalPages = useAppSelector((state) => state.pagination.totalPages);
 
   //Funções:
+  window.addEventListener("load", () => {
+    setIsMobileScreen(window.outerWidth < 769);
+  });
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setIsMobileScreen(window.outerWidth < 769);
+    });
+  }, [isMobileScreen]);
 
   function isButton(
     target: HTMLButtonElement | EventTarget
@@ -19,49 +29,47 @@ const Pagination: React.FC<{}> = (props) => {
     return (target as HTMLButtonElement).innerText !== undefined;
   }
 
-  const makeDisplayArray = (totalPages: number): (string | number)[] => {
-    if (totalPages > 10) {
-      if (currentPage < 7) {
-        return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-      } else if (currentPage >= 7) {
+  const makeDisplayArray = (
+    totalPages: number,
+    totalDisplayPages: number
+  ): (string | number)[] => {
+    const displayArray = [];
+    if (totalPages > totalDisplayPages) {
+      if (currentPage < totalDisplayPages - 1) {
+        for (let i = 0; i < totalDisplayPages; i++) {
+          displayArray[i] = i + 1;
+        }
+        return displayArray;
+      } else if (currentPage >= totalDisplayPages - 2) {
         if (currentPage >= totalPages - 4) {
-          return [
-            totalPages - 9,
-            totalPages - 8,
-            totalPages - 7,
-            totalPages - 6,
-            totalPages - 5,
-            totalPages - 4,
-            totalPages - 3,
-            totalPages - 2,
-            totalPages - 1,
-            totalPages,
-          ];
+          for (let i = 0; i < totalDisplayPages; i++) {
+            displayArray[i] = totalPages - (totalDisplayPages - 1 - i);
+          }
+          return displayArray;
         }
         if (currentPage < totalPages - 4) {
-          return [
-            currentPage - 5,
-            currentPage - 4,
-            currentPage - 3,
-            currentPage - 2,
-            currentPage - 1,
-            currentPage,
-            currentPage + 1,
-            currentPage + 2,
-            "...",
-            totalPages,
-          ];
+          for (let i = 0; i < totalDisplayPages / 3; i++) {
+            displayArray[i] =
+              currentPage - (Math.ceil(totalDisplayPages / 3) - i);
+          }
+          displayArray.push(currentPage);
+          displayArray.push(currentPage + 1);
+          displayArray.push(currentPage + 2);
+          displayArray.push("...");
+          displayArray.push(totalPages);
+          return displayArray;
         }
       }
     }
-    const displayArray = [];
     for (let i = 0; i < totalPages; i++) {
       displayArray[i] = i + 1;
     }
     return displayArray;
   };
 
-  displayArray = makeDisplayArray(totalPages);
+  isMobileScreen
+    ? (displayArray = makeDisplayArray(totalPages, 5))
+    : (displayArray = makeDisplayArray(totalPages, 10));
 
   const onClickHandler = (event: React.MouseEvent) => {
     if (isButton(event.target)) {
@@ -106,13 +114,17 @@ const Pagination: React.FC<{}> = (props) => {
       <ul>
         {currentPage > 1 && (
           <li>
-            <button onClick={onClickHandler}>{"< Anterior"}</button>
+            <button onClick={onClickHandler}>
+              {isMobileScreen ? "<" : "< Anterior"}
+            </button>
           </li>
         )}
         {pagesDisplay}
         {currentPage < totalPages && (
           <li>
-            <button onClick={onClickHandler}>{`Próxima >`}</button>
+            <button onClick={onClickHandler}>
+              {isMobileScreen ? ">" : `Próxima >`}
+            </button>
           </li>
         )}
       </ul>

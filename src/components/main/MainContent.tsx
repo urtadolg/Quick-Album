@@ -6,6 +6,7 @@ import { useAppSelector } from "../../store/hook";
 import ImageDetails from "../modal/ImageDetails";
 import PhotosList from "../photos/PhotosList";
 import Pagination from "../ui/Pagination";
+import SearchBox from "../ui/SearchBox";
 
 const MainContent: React.FC = (props) => {
   //Inicialização de variáveis e states:
@@ -21,7 +22,8 @@ const MainContent: React.FC = (props) => {
           document.getElementById("modalPortal") as HTMLElement
         )}
       <div className={styles.header}>
-        <h1 className={styles.title}>Seleção do Dia</h1>
+        <h1 className={styles.title}>Descubra sua inspiração</h1>
+        <SearchBox className={styles.searchBox} />
       </div>
       <Pagination>
         <PhotosList />

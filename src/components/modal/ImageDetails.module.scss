@@ -9,7 +9,7 @@
   background-color: black;
   opacity: 80%;
   z-index: 10;
-  &::before {
+  &::after {
     content: "X";
     position: fixed;
     top: 3%;
@@ -32,6 +32,15 @@
   background-color: white;
   border-radius: 10px;
   z-index: 20;
+  text-align: center;
+
+  @media (max-width: 768px) {
+  }
+
+  img {
+    max-width: 100%;
+  }
+
   .detailsContainer {
     width: 100%;
     height: fit-content;

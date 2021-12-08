@@ -4,10 +4,13 @@
   @include makeFlex(row, center, center);
   width: 100%;
   height: fit-content;
+  font-size: 1.5rem;
 
   .searchInput {
     width: 100%;
-    line-height: 1.8rem;
+    padding-left: 1.5rem;
+    font-size: 1.2rem;
+    line-height: 1.75rem;
     outline-color: $button;
     border: $button solid 2px;
     border-right: transparent;

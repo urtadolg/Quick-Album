@@ -1,13 +1,33 @@
 @import "../../styles/variables";
 
 .header {
-  @include makeFlex(row, center, center);
-  margin: 6rem 0 2rem 0;
-  height: 350px;
-  background-color: #007bff;
+  height: 400px;
+  padding: 6rem;
+  background-color: $on-header;
+  color: rgb(255, 255, 255);
+
+  @media (max-width: 768px) {
+    padding: 6rem 4rem;
+  }
+
+  .searchBox {
+    input {
+      width: 40%;
+      border-color: white;
+    }
+    button {
+      background-color: white;
+      color: $on-header;
+      box-shadow: 0 0 5px 2px $on-header;
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 
   .title {
+    text-align: center;
     font-size: 3rem;
-    color: white;
   }
 }

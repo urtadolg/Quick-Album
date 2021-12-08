@@ -1,6 +1,6 @@
 import React from "react";
 
-/* import styles from "./PhotosItem.module.scss"; */
+import styles from "./PhotosItem.module.scss";
 import { useAppSelector, useAppDispatch } from "../../store/hook";
 import { imgActions } from "../../store/img-slice";
 import LoadingImage from "../ui/LoadingImage";
@@ -25,6 +25,7 @@ const PhotosItem: React.FC<{
           onClick={onClickHandler}
           alt={`Foto tirada por: ` + props.imgDetails.photographer}
           src={props.imgDetails.src.tiny}
+          className={styles.img}
         />
       ) : (
         <LoadingImage />
