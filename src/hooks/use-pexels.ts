@@ -30,7 +30,7 @@ const usePexels = () => {
     return (response as PhotosWithTotalResults).total_results !== undefined;
   }
 
-  const sendCuratedRequest = async (page?: number, per_page: number = 10) => {
+  const sendCuratedRequest = async (page?: number, per_page: number = 15) => {
     try {
       dispatch(imgActions.startLoadingRequest());
       const response = await client.photos.curated({ page, per_page });
@@ -45,6 +45,78 @@ const usePexels = () => {
               Math.floor(response.total_results / per_page)
             )
           );
+          dispatch(paginationActions.setTotalImages(response.total_results));
+        }
+      } else {
+        dispatch(imgActions.stopLoadingRequest());
+        throw new Error(response.error);
+      }
+    } catch (error) {
+      setErrorMessage("Erro ao acessar o servidor: " + error);
+      console.log(error);
+    }
+  };
+
+  const sendSearchRequest = async (
+    query: string,
+    page: number = 1,
+    per_page: number = 15,
+    color: string = "green",
+    size: "large" | "medium" | "small" = "small",
+    orientation: "landscape" | "portrait" | "square" = "square",
+    locale:
+      | "en-US"
+      | "pt-BR"
+      | "es-ES"
+      | "ca-ES"
+      | "de-DE"
+      | "it-IT"
+      | "fr-FR"
+      | "sv-SE"
+      | "id-ID"
+      | "pl-PL"
+      | "ja-JP"
+      | "zh-TW"
+      | "zh-CN"
+      | "ko-KR"
+      | "th-TH"
+      | "nl-NL"
+      | "hu-HU"
+      | "vi-VN"
+      | "cs-CZ"
+      | "da-DK"
+      | "fi-FI"
+      | "uk-UA"
+      | "el-GR"
+      | "ro-RO"
+      | "nb-NO"
+      | "sk-SK"
+      | "tr-TR"
+      | "ru-RU" = "pt-BR"
+  ) => {
+    try {
+      dispatch(imgActions.startLoadingRequest());
+      const response = await client.photos.search({
+        query,
+        page,
+        per_page,
+        color,
+        size,
+        orientation,
+        locale,
+      });
+      dispatch(imgActions.stopLoadingRequest());
+      console.log(response);
+      if (isPhotos(response)) {
+        dispatch(imgActions.saveSearchPhotos(response.photos));
+        dispatch(paginationActions.setCurrentPage(response.page));
+        if (isPhotosWithTotalResults(response)) {
+          dispatch(
+            paginationActions.setTotalPages(
+              Math.floor(response.total_results / per_page)
+            )
+          );
+          dispatch(paginationActions.setTotalImages(response.total_results));
         }
       } else {
         dispatch(imgActions.stopLoadingRequest());
@@ -58,6 +130,7 @@ const usePexels = () => {
 
   return {
     sendCuratedRequest,
+    sendSearchRequest,
     errorMessage,
   };
 };

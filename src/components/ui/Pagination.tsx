@@ -13,14 +13,20 @@ const Pagination: React.FC<{}> = (props) => {
   const totalPages = useAppSelector((state) => state.pagination.totalPages);
 
   //Funções:
-  window.addEventListener("load", () => {
-    setIsMobileScreen(window.outerWidth < 769);
-  });
+
+  console.log("é mobile ? " + isMobileScreen);
 
   useEffect(() => {
-    window.addEventListener("resize", () => {
+    const listenResizeFunction = () => {
       setIsMobileScreen(window.outerWidth < 769);
-    });
+    };
+    window.addEventListener("load", listenResizeFunction);
+    window.addEventListener("resize", listenResizeFunction);
+
+    return () => {
+      window.removeEventListener("load", listenResizeFunction);
+      window.removeEventListener("resize", listenResizeFunction);
+    };
   }, [isMobileScreen]);
 
   function isButton(
@@ -61,6 +67,10 @@ const Pagination: React.FC<{}> = (props) => {
         }
       }
     }
+    if (totalPages <= 1) {
+      displayArray[0] = 1;
+      return displayArray;
+    }
     for (let i = 0; i < totalPages; i++) {
       displayArray[i] = i + 1;
     }
@@ -73,18 +83,20 @@ const Pagination: React.FC<{}> = (props) => {
 
   const onClickHandler = (event: React.MouseEvent) => {
     if (isButton(event.target)) {
-      console.log(event);
-      if (event.target.innerText !== "< Anterior" && "Próxima >") {
+      if (
+        !event.target.innerText.includes("<") &&
+        !event.target.innerText.includes(">")
+      ) {
         dispatch(
           paginationActions.selectPage(parseInt(event.target.innerText))
         );
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      if (event.target.innerText === "Próxima >") {
+      if (event.target.innerText.includes(">")) {
         dispatch(paginationActions.selectPage(currentPage + 1));
         window.scrollTo({ top: 0, behavior: "smooth" });
-      } else if (event.target.innerText === "< Anterior") {
+      } else if (event.target.innerText.includes("<")) {
         dispatch(paginationActions.selectPage(currentPage - 1));
         window.scrollTo({ top: 0, behavior: "smooth" });
       }

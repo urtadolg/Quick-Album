@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 
 import styles from "./MainContent.module.scss";
@@ -7,13 +7,21 @@ import ImageDetails from "../modal/ImageDetails";
 import PhotosList from "../photos/PhotosList";
 import Pagination from "../ui/Pagination";
 import SearchBox from "../ui/SearchBox";
+import usePexels from "../../hooks/use-pexels";
 
 const MainContent: React.FC = (props) => {
   //Inicialização de variáveis e states:
   const imageModalIsOpened = useAppSelector(
     (state) => state.img.imageModalOpened
   );
+  const { sendCuratedRequest, sendSearchRequest, errorMessage } = usePexels();
+  const page = useAppSelector((state) => state.pagination.selectedPage);
 
+  useEffect(() => {
+    sendCuratedRequest(page, 40);
+  }, [page]);
+
+  console.log("renderizando... teoricamente" + page);
   return (
     <React.Fragment>
       {imageModalIsOpened &&
@@ -26,7 +34,7 @@ const MainContent: React.FC = (props) => {
         <SearchBox className={styles.searchBox} />
       </div>
       <Pagination>
-        <PhotosList />
+        <PhotosList type="curated" />
       </Pagination>
     </React.Fragment>
   );

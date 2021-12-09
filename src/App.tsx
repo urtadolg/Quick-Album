@@ -31,14 +31,6 @@ library.add(
 );
 
 function App() {
-  //Inicialização de variáveis e states:
-  const { sendCuratedRequest, errorMessage } = usePexels();
-  const selectedPage = useAppSelector((state) => state.pagination.selectedPage);
-
-  useEffect(() => {
-    /* sendCuratedRequest(selectedPage, 40); */
-    console.log(errorMessage);
-  }, [selectedPage, errorMessage, sendCuratedRequest]);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
   return (

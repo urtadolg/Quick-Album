@@ -4,6 +4,7 @@ const initialState = {
   currentPage: 1,
   selectedPage: 1,
   totalPages: 0,
+  totalImages: 0,
 };
 
 const paginationSlice = createSlice({
@@ -18,6 +19,12 @@ const paginationSlice = createSlice({
     },
     setTotalPages(state, action: PayloadAction<number>) {
       state.totalPages = action.payload;
+    },
+    setTotalImages(state, action: PayloadAction<number>) {
+      state.totalImages = action.payload;
+    },
+    resetSelectedPage(state) {
+      state.selectedPage = 1;
     },
   },
 });
