@@ -11,10 +11,10 @@ const Pagination: React.FC<{}> = (props) => {
   let displayArray: (string | number)[] = [];
   const currentPage = useAppSelector((state) => state.pagination.currentPage);
   const totalPages = useAppSelector((state) => state.pagination.totalPages);
+  const totalImages = useAppSelector((state) => state.pagination.totalImages);
+  const requestLoading = useAppSelector((state) => state.img.isLoadingRequest);
 
   //Funções:
-
-  console.log("é mobile ? " + isMobileScreen);
 
   useEffect(() => {
     const listenResizeFunction = () => {
@@ -145,9 +145,15 @@ const Pagination: React.FC<{}> = (props) => {
 
   return (
     <div className={styles.paginationContainer}>
-      <PaginationContainer />
-      {props.children}
-      <PaginationContainer />
+      {totalImages > 0 ? (
+        <>
+          <PaginationContainer />
+          {props.children}
+          <PaginationContainer />
+        </>
+      ) : (
+        <h1 className={styles.errorMessage}>Nada Encontrado :(</h1>
+      )}
     </div>
   );
 };

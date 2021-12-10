@@ -1,4 +1,10 @@
 //colors
+$green: rgba(0, 161, 0, 0.4);
+$green_desaturated: rgba(0, 161, 0, 0.6);
+$orange: rgba(255, 115, 0, 0.6);
+$orange_desaturated: rgba(255, 115, 0, 0.8);
+$blue: rgba(0, 140, 255, 0.6);
+$blue_desaturated: rgba(0, 140, 255, 0.8);
 
 $header: #ffffff;
 $on-header: #007bff;
@@ -13,3 +19,5 @@ $on-button: white;
   justify-content: $justifyContent;
   align-items: $alignItems;
 }
+
+$box-shadow: 0 0 15px rgba(0, 0, 0, 0.16);

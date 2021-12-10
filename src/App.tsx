@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -9,15 +8,17 @@ import {
   faThLarge,
   faSignOutAlt,
   faExpand,
+  faLeaf,
+  faHeartbeat,
 } from "@fortawesome/free-solid-svg-icons";
 
-import usePexels from "./hooks/use-pexels";
 import { useAppSelector } from "./store/hook";
 import Layout from "./components/layout/Layout";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
+import Categories from "./pages/Categories";
 
 //configurando FontAwesome:
 library.add(
@@ -27,7 +28,9 @@ library.add(
   faUser,
   faThLarge,
   faSignOutAlt,
-  faExpand
+  faExpand,
+  faLeaf,
+  faHeartbeat
 );
 
 function App() {
@@ -39,6 +42,7 @@ function App() {
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/categories" element={<Categories />} />
         <Route
           path="/auth"
           element={isLoggedIn ? <Navigate to="/profile" /> : <Auth />}

@@ -2,7 +2,8 @@
 
 .placeholderContainer {
   @include makeFlex(row, center, center);
-  background-color: rgba($color: #a1e4ff, $alpha: 0.5);
+  background-color: rgba($color: #b4b4b4, $alpha: 0.5);
   width: 280px;
   height: 200px;
+  border-radius: 10px;
 }

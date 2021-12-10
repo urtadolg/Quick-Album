@@ -1,0 +1,22 @@
+@import "../../styles/variables";
+
+.listContainer {
+  @include makeFlex(row, center, center);
+  gap: 10px;
+  max-width: 1440px;
+  height: 100%;
+  margin-top: 8rem;
+
+  .health {
+    background-color: $orange;
+    &:hover {
+      background-color: $orange_desaturated;
+    }
+  }
+  .mar {
+    background-color: $blue;
+    &:hover {
+      background-color: $blue_desaturated;
+    }
+  }
+}

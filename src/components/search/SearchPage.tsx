@@ -26,6 +26,24 @@ const SearchPage: React.FC = (props) => {
     sendSearchRequest(searchTerm, page, 40);
   }, [searchTerm, page]);
 
+  const headerText =
+    totalImages > 0 ? (
+      <>
+        <h1 className={styles.title}>
+          Resultados da pesquisa por: <span>"{searchTerm}"</span>
+        </h1>
+        <h2 className={styles.results}>
+          Foram encontradas {totalImages} imagens.
+        </h2>
+      </>
+    ) : (
+      <>
+        <h1 className={styles.title}>
+          Não foram encontradas imagens para: <span>"{searchTerm}"</span>
+        </h1>
+      </>
+    );
+
   return (
     <React.Fragment>
       {imageModalIsOpened &&
@@ -34,12 +52,7 @@ const SearchPage: React.FC = (props) => {
           document.getElementById("modalPortal") as HTMLElement
         )}
       <div className={styles.headerContainer}>
-        <h1 className={styles.title}>
-          Resultados da pesquisa por: <span>"{searchTerm}"</span>
-        </h1>
-        <h2 className={styles.results}>
-          Foram encontradas {totalImages} imagens.
-        </h2>
+        {headerText}
         <SearchBox className={styles.searchBox} />
       </div>
       <Pagination>
