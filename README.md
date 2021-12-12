@@ -39,9 +39,9 @@
 
 ### Smartphone - Homepage / Menu / Detalhes
 <div>
-  <img height="600px" src="https://user-images.githubusercontent.com/89041463/145715108-61730be8-f62b-44be-a864-774fadc749e8.png" />
-  <img height="600px" src="https://user-images.githubusercontent.com/89041463/145716494-13cbf583-796f-49d1-a7fa-6d44e2593ddd.png" />
-  <img height="600px" src="https://user-images.githubusercontent.com/89041463/145717113-4fe641cc-90e7-46f4-9eac-1ac636876146.png" />
+  <img height="500px" src="https://user-images.githubusercontent.com/89041463/145715108-61730be8-f62b-44be-a864-774fadc749e8.png" />
+  <img height="500px" src="https://user-images.githubusercontent.com/89041463/145716494-13cbf583-796f-49d1-a7fa-6d44e2593ddd.png" />
+  <img height="500px" src="https://user-images.githubusercontent.com/89041463/145717113-4fe641cc-90e7-46f4-9eac-1ac636876146.png" />
 </div>
 
 # Recursos
