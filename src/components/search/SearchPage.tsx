@@ -18,8 +18,7 @@ const SearchPage: React.FC = (props) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const searchTerm = queryParams.get("q") as string;
-  const colorSearch = queryParams.get("color") as string;
-  const { sendCuratedRequest, sendSearchRequest, errorMessage } = usePexels();
+  const { sendSearchRequest } = usePexels();
   const page = useAppSelector((state) => state.pagination.selectedPage);
   const totalImages = useAppSelector((state) => state.pagination.totalImages);
 

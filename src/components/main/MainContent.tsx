@@ -14,14 +14,13 @@ const MainContent: React.FC = (props) => {
   const imageModalIsOpened = useAppSelector(
     (state) => state.img.imageModalOpened
   );
-  const { sendCuratedRequest, sendSearchRequest, errorMessage } = usePexels();
+  const { sendCuratedRequest } = usePexels();
   const page = useAppSelector((state) => state.pagination.selectedPage);
 
   useEffect(() => {
     sendCuratedRequest(page, 40);
   }, [page]);
 
-  console.log("renderizando... teoricamente" + page);
   return (
     <React.Fragment>
       {imageModalIsOpened &&

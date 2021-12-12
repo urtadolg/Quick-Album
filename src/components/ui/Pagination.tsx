@@ -12,7 +12,6 @@ const Pagination: React.FC<{}> = (props) => {
   const currentPage = useAppSelector((state) => state.pagination.currentPage);
   const totalPages = useAppSelector((state) => state.pagination.totalPages);
   const totalImages = useAppSelector((state) => state.pagination.totalImages);
-  const requestLoading = useAppSelector((state) => state.img.isLoadingRequest);
 
   //Funções:
 

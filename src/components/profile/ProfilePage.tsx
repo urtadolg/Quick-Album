@@ -1,10 +1,16 @@
 import React from "react";
-import { useAppSelector } from "../../store/hook";
+import { createPortal } from "react-dom";
 
+import { useAppSelector } from "../../store/hook";
+import ImageDetails from "../modal/ImageDetails";
+import PhotosItem from "../photos/PhotosItem";
 import styles from "./ProfilePage.module.scss";
 
 const ProfilePage: React.FC = (props) => {
   //Variables:
+  const imageModalIsOpened = useAppSelector(
+    (state) => state.img.imageModalOpened
+  );
   const favoriteList = useAppSelector(
     (state) => state.img.favoritePhotos.photos
   );
@@ -12,21 +18,28 @@ const ProfilePage: React.FC = (props) => {
   //Functions:
   const imageList = favoriteList.map((item) => {
     return (
-      <li key={item.id}>
-        <img src={item.src.tiny} />
+      <li className={styles.img} key={item.id}>
+        <PhotosItem imgDetails={item} />
       </li>
     );
   });
 
   return (
-    <div className={styles.profile}>
-      <h1>Meus Favoritos</h1>
-      {favoriteList.length !== 0 ? (
-        <ul className={styles.favoriteList}>{imageList}</ul>
-      ) : (
-        <p>Nenhuma imagem salva.</p>
-      )}
-    </div>
+    <React.Fragment>
+      {imageModalIsOpened &&
+        createPortal(
+          <ImageDetails />,
+          document.getElementById("modalPortal") as HTMLElement
+        )}
+      <div className={styles.profile}>
+        <h1>Meus Favoritos</h1>
+        {favoriteList.length !== 0 ? (
+          <ul className={styles.favoriteList}>{imageList}</ul>
+        ) : (
+          <p>Nenhuma imagem salva.</p>
+        )}
+      </div>
+    </React.Fragment>
   );
 };
 

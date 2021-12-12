@@ -35,7 +35,6 @@ const usePexels = () => {
       dispatch(imgActions.startLoadingRequest());
       const response = await client.photos.curated({ page, per_page });
       dispatch(imgActions.stopLoadingRequest());
-      console.log(response);
       if (isPhotos(response)) {
         dispatch(imgActions.saveCuratedPhotos(response.photos));
         dispatch(paginationActions.setCurrentPage(response.page));
@@ -53,7 +52,6 @@ const usePexels = () => {
       }
     } catch (error) {
       setErrorMessage("Erro ao acessar o servidor: " + error);
-      console.log(error);
     }
   };
 
@@ -106,7 +104,6 @@ const usePexels = () => {
         locale,
       });
       dispatch(imgActions.stopLoadingRequest());
-      console.log(response);
       if (isPhotos(response)) {
         dispatch(imgActions.saveSearchPhotos(response.photos));
         dispatch(paginationActions.setCurrentPage(response.page));
@@ -124,7 +121,6 @@ const usePexels = () => {
       }
     } catch (error) {
       setErrorMessage("Erro ao acessar o servidor: " + error);
-      console.log(error);
     }
   };
 
