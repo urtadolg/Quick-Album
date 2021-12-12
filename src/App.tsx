@@ -10,7 +10,21 @@ import {
   faExpand,
   faLeaf,
   faHeartbeat,
+  faWater,
+  faPalette,
+  faCity,
+  faTractor,
+  faCar,
+  faMountain,
+  faFillDrip,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  faGithub,
+  faLinkedin,
+  faFacebook,
+} from "@fortawesome/free-brands-svg-icons";
 
 import { useAppSelector } from "./store/hook";
 import Layout from "./components/layout/Layout";
@@ -30,7 +44,18 @@ library.add(
   faSignOutAlt,
   faExpand,
   faLeaf,
-  faHeartbeat
+  faHeartbeat,
+  faWater,
+  faPalette,
+  faCity,
+  faTractor,
+  faCar,
+  faMountain,
+  faFillDrip,
+  faHeart,
+  faGithub,
+  faFacebook,
+  faLinkedin
 );
 
 function App() {

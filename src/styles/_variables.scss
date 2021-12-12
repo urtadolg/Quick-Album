@@ -1,10 +1,30 @@
 //colors
-$green: rgba(0, 161, 0, 0.4);
-$green_desaturated: rgba(0, 161, 0, 0.6);
-$orange: rgba(255, 115, 0, 0.6);
-$orange_desaturated: rgba(255, 115, 0, 0.8);
-$blue: rgba(0, 140, 255, 0.6);
-$blue_desaturated: rgba(0, 140, 255, 0.8);
+$green: rgba(0, 161, 0, 0.5);
+$green_desaturated: rgba(0, 161, 0, 0.7);
+$orange: rgb(235, 106, 0);
+$orange_alpha: rgba(216, 97, 0, 0.5);
+$orange_text: rgb(143, 57, 0);
+$orange_desaturated: rgba(216, 97, 0, 0.7);
+$blue: rgba(0, 140, 255, 0.5);
+$blue_alpha: rgba(0, 140, 255, 0.5);
+$blue_desaturated: rgba(0, 140, 255, 0.7);
+$pink_alpha: rgba(212, 0, 255, 0.5);
+$pink_desaturated: rgba(212, 0, 255, 0.7);
+$grey: rgba(145, 145, 145, 0.5);
+$grey_alpha: rgba(145, 145, 145, 0.5);
+$grey_desaturated: rgba(145, 145, 145, 0.7);
+$yellow: rgb(255, 238, 0);
+$yellow_alpha: rgba(255, 238, 0, 0.5);
+$yellow_desaturated: rgba(255, 238, 0, 0.7);
+$yellow_text: rgb(143, 133, 0);
+$red: rgb(207, 0, 0);
+$red_alpha: rgba(255, 0, 0, 0.5);
+$red_desaturated: rgba(255, 0, 0, 0.7);
+$red_text: rgb(255, 128, 128);
+$aqua: rgba(0, 255, 213, 0.5);
+$aqua_alpha: rgba(0, 255, 213, 0.5);
+$aqua_desaturated: rgba(0, 255, 213, 0.7);
+$white_desaturated: rgb(196, 196, 196);
 
 $header: #ffffff;
 $on-header: #007bff;
@@ -18,6 +38,26 @@ $on-button: white;
   flex-direction: $flexDirection;
   justify-content: $justifyContent;
   align-items: $alignItems;
+}
+
+@mixin makeCategory($imgUrl, $mainColor, $hoverColor) {
+  background-image: url($imgUrl);
+  div {
+    background-color: $mainColor;
+    &:hover {
+      background-color: $hoverColor;
+    }
+  }
+}
+
+@mixin makeColorOption($mainColor, $textColor) {
+  width: 180px;
+  height: 180px;
+  color: $textColor;
+  div {
+    border-radius: 50%;
+    background-color: $mainColor;
+  }
 }
 
 $box-shadow: 0 0 15px rgba(0, 0, 0, 0.16);

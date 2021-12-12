@@ -3,14 +3,19 @@
 .container {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 30px;
   width: 100%;
+  font-size: 1.5rem;
+
+  .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
 
   @media (min-width: 769px) {
     display: none;
   }
 
-  font-size: 1.5rem;
   .btnMenu {
     cursor: pointer;
   }

@@ -4,9 +4,17 @@
   @include makeFlex(row, flex-start, flex-start);
 
   flex-wrap: wrap;
-  gap: 35px calc((100% - 280px * 4) / 3);
+  gap: 15px calc((100% - 280px * 4) / 3);
+  margin: 0 20px;
+
+  @media (max-width: 1180px) {
+    margin: 0 30px;
+    justify-content: center;
+    gap: 10px;
+  }
 
   @media (max-width: 768px) {
+    margin: 0;
     gap: 10px;
     flex-direction: column;
     align-items: center;

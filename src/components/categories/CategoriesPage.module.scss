@@ -1,22 +1,84 @@
 @import "../../styles/variables";
 
+.title {
+  font-size: 2.5rem;
+  margin-top: 8rem;
+  text-align: center;
+}
+
 .listContainer {
   @include makeFlex(row, center, center);
-  gap: 10px;
-  max-width: 1440px;
+  flex-wrap: wrap;
+  margin: 2rem auto 0 auto;
+  gap: 20px;
+  max-width: 1300px;
   height: 100%;
-  margin-top: 8rem;
 
-  .health {
-    background-color: $orange;
-    &:hover {
-      background-color: $orange_desaturated;
-    }
+  @media (max-width: 768px) {
+    margin: 20px;
   }
+
+  .natureza {
+    @include makeCategory(
+      "../assets/category-nature.jpeg",
+      $green,
+      $green_desaturated
+    );
+  }
+
+  .saude {
+    @include makeCategory(
+      "../assets/category-health.jpeg",
+      $orange_alpha,
+      $orange_desaturated
+    );
+  }
+
   .mar {
-    background-color: $blue;
-    &:hover {
-      background-color: $blue_desaturated;
-    }
+    @include makeCategory(
+      "../assets/category-mar.jpeg",
+      $blue_alpha,
+      $blue_desaturated
+    );
+  }
+
+  .arte {
+    @include makeCategory(
+      "../assets/category-arte.jpeg",
+      $pink_alpha,
+      $pink_desaturated
+    );
+  }
+
+  .cidade {
+    @include makeCategory(
+      "../assets/category-cidade.jpeg",
+      $grey_alpha,
+      $grey_desaturated
+    );
+  }
+
+  .campo {
+    @include makeCategory(
+      "../assets/category-campo.jpeg",
+      $yellow_alpha,
+      $yellow_desaturated
+    );
+  }
+
+  .carro {
+    @include makeCategory(
+      "../assets/category-carro.jpeg",
+      $red_alpha,
+      $red_desaturated
+    );
+  }
+
+  .paisagem {
+    @include makeCategory(
+      "../assets/category-paisagem.jpeg",
+      $aqua_alpha,
+      $aqua_desaturated
+    );
   }
 }

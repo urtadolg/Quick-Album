@@ -11,9 +11,9 @@ const CategoryItem: React.FC<{
     <li
       id={props.name}
       onClick={props.onClick}
-      className={styles.itemContainer}
+      className={`${styles.itemContainer} ${props.className}`}
     >
-      <div className={`${styles.item} ${props.className}`}>
+      <div className={styles.item}>
         {props.children}
         {props.name}
       </div>

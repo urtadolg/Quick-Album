@@ -9,6 +9,7 @@ import { useState } from "react";
 const MenuMobile: React.FC<{
   closeMenu: () => void;
 }> = (props) => {
+  //Variables
   const [closeMenu, setCloseMenu] = useState<string>(`${styles.container}`);
   const [closeBackdrop, setCloseBackdrop] = useState<string>(
     `${styles.backdrop}`
@@ -16,6 +17,7 @@ const MenuMobile: React.FC<{
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
+  //Functions
   const onClickHandler = () => {
     setCloseMenu(`${styles.container} ${styles.closeMenu}`);
     setCloseBackdrop(`${styles.backdrop} ${styles.closeBackdrop}`);
@@ -45,7 +47,7 @@ const MenuMobile: React.FC<{
             <li onClick={onClickHandler}>
               <Link to="/categories">
                 <FontAwesomeIcon icon="th-large" />
-                Categories{" "}
+                Categorias{" "}
               </Link>
             </li>
 
