@@ -53,7 +53,7 @@ const usePexels = () => {
         setErrorMessage("Erro ao acessar o servidor: " + error);
       }
     },
-    [client.photos, dispatch]
+    []
   );
 
   const sendSearchRequest = useCallback(
@@ -125,7 +125,7 @@ const usePexels = () => {
         setErrorMessage("Erro ao acessar o servidor: " + error);
       }
     },
-    [client.photos, dispatch]
+    []
   );
 
   return {
