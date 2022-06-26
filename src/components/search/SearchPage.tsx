@@ -24,7 +24,7 @@ const SearchPage: React.FC = (props) => {
 
   useEffect(() => {
     sendSearchRequest(searchTerm, page, 40);
-  }, [searchTerm, page]);
+  }, [searchTerm, page, sendSearchRequest]);
 
   const headerText =
     totalImages > 0 ? (

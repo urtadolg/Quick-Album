@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { useAppSelector, useAppDispatch } from "../store/hook";
 import { authActions } from "../store/auth-slice";
-import FIREBASE_API_KEY from "../credentials/apiKeys";
 
 const useAuth = () => {
   //Inicialização de variáveis e states:
@@ -20,13 +18,9 @@ const useAuth = () => {
 
     //Checando se Login ou Signup:
     if (isCreatingAccount) {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
-        FIREBASE_API_KEY;
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_API}`;
     } else {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
-        FIREBASE_API_KEY;
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_API}`;
     }
 
     const sendData = async () => {

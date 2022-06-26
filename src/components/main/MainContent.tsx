@@ -19,7 +19,7 @@ const MainContent: React.FC = (props) => {
 
   useEffect(() => {
     sendCuratedRequest(page, 40);
-  }, [page]);
+  }, [page, sendCuratedRequest]);
 
   return (
     <React.Fragment>
