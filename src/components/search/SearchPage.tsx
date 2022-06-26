@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { createPortal } from "react-dom";
 import { useLocation } from "react-router-dom";
 
 import { useAppSelector } from "../../store/hook";
@@ -46,11 +45,7 @@ const SearchPage: React.FC = (props) => {
 
   return (
     <React.Fragment>
-      {imageModalIsOpened &&
-        createPortal(
-          <ImageDetails />,
-          document.getElementById("modalPortal") as HTMLElement
-        )}
+      {imageModalIsOpened && <ImageDetails />}
       <div className={styles.headerContainer}>
         {headerText}
         <SearchBox className={styles.searchBox} />

@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { createPortal } from "react-dom";
-
 import styles from "./MainContent.module.scss";
 import { useAppSelector } from "../../store/hook";
 import ImageDetails from "../modal/ImageDetails";
@@ -23,11 +21,7 @@ const MainContent: React.FC = (props) => {
 
   return (
     <React.Fragment>
-      {imageModalIsOpened &&
-        createPortal(
-          <ImageDetails />,
-          document.getElementById("modalPortal") as HTMLElement
-        )}
+      {imageModalIsOpened && <ImageDetails />}
       <div className={styles.header}>
         <h1 className={styles.title}>Descubra sua inspiração</h1>
         <SearchBox className={styles.searchBox} />

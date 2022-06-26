@@ -1,5 +1,4 @@
 import React from "react";
-import { createPortal } from "react-dom";
 
 import { useAppSelector } from "../../store/hook";
 import ImageDetails from "../modal/ImageDetails";
@@ -26,11 +25,7 @@ const ProfilePage: React.FC = (props) => {
 
   return (
     <React.Fragment>
-      {imageModalIsOpened &&
-        createPortal(
-          <ImageDetails />,
-          document.getElementById("modalPortal") as HTMLElement
-        )}
+      {imageModalIsOpened && <ImageDetails />}
       <div className={styles.profile}>
         <h1>Meus Favoritos</h1>
         {favoriteList.length !== 0 ? (
