@@ -13,21 +13,11 @@ const ImageDetails: React.FC = (props) => {
   const favoriteIdList = useAppSelector(
     (state) => state.img.favoritePhotos.photosIdList
   );
-  const [backdropClasses, setBackdropClasses] = useState<string>(
-    `${styles.backdrop}`
-  );
-  const [modalClasses, setModalClasses] = useState<string>(
-    `${styles.modalContainer}`
-  );
 
   //Funções:
 
   const onCloseHandler = () => {
-    setModalClasses(`${styles.modalContainer} ${styles.closeModal}`);
-    setBackdropClasses(`${styles.backdrop} ${styles.closeBackdrop}`);
-    setTimeout(() => {
-      dispatch(imgActions.closeImageModal());
-    }, 200);
+    dispatch(imgActions.closeImageModal());
   };
 
   const onFavoriteClickHandler = () => {
@@ -52,8 +42,8 @@ const ImageDetails: React.FC = (props) => {
 
   return (
     <React.Fragment>
-      <div className={backdropClasses} onClick={onCloseHandler} />
-      <section className={modalClasses}>
+      <div className={styles.backdrop} onClick={onCloseHandler} />
+      <section className={styles.modalContainer}>
         <img
           src={imgDetails.src.large}
           alt={`Foto tirada por ${imgDetails.photographer}`}
