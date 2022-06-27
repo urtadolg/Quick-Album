@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import styles from "./ImageDetails.module.scss";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
