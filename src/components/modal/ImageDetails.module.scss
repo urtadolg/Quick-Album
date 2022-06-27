@@ -1,5 +1,41 @@
 @import "../../styles/variables";
 
+@keyframes openBackdrop {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 80%;
+  }
+}
+
+@keyframes openModal {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+@keyframes closeBackdrop {
+  from {
+    opacity: 80%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+
+@keyframes closeModal {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -58,41 +94,10 @@
   }
 }
 
-@keyframes openBackdrop {
-  from {
-    opacity: 0%;
-  }
-  to {
-    opacity: 80%;
-  }
-}
-@keyframes openModal {
-  from {
-    opacity: 0%;
-  }
-  to {
-    opacity: 100%;
-  }
-}
-@keyframes closeBackdrop {
-  from {
-    opacity: 80%;
-  }
-  to {
-    opacity: 0%;
-  }
-}
-@keyframes closeModal {
-  from {
-    opacity: 100%;
-  }
-  to {
-    opacity: 0%;
-  }
-}
 .closeModal {
   animation: closeModal 0.2s ease-in-out forwards;
 }
+
 .closeBackdrop {
   animation: closeBackdrop 0.2s ease-in-out forwards;
 }
